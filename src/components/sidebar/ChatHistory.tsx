@@ -9,22 +9,22 @@ export function ChatHistory() {
     useChatStore();
 
   return (
-    <div className="space-y-3">
-      <div className="flex items-center justify-between px-3">
-        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-          Conversations
+    <div className="space-y-2">
+      <div className="flex items-center justify-between px-2">
+        <h3 className="text-xs font-medium text-muted-foreground tracking-wide">
+          History
         </h3>
         <Button
           variant="ghost"
           size="icon"
           onClick={createNewConversation}
-          className="h-6 w-6 hover:bg-primary/10"
+          className="h-6 w-6 hover:bg-muted"
         >
-          <Plus className="h-4 w-4" />
+          <Plus className="h-3.5 w-3.5" />
         </Button>
       </div>
 
-      <div className="space-y-1">
+      <div className="space-y-0.5">
         {conversations.map((conv) => {
           const isActive = conv.id === currentConversationId;
           const persona = agentPersonas.find((p) => p.id === conv.personaId);
@@ -33,23 +33,23 @@ export function ChatHistory() {
             <motion.button
               key={conv.id}
               onClick={() => loadConversation(conv.id)}
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ backgroundColor: 'hsl(0 0% 96%)' }}
               whileTap={{ scale: 0.98 }}
-              className={`w-full text-left p-3 rounded-lg transition-all ${
+              className={`w-full text-left px-3 py-2 rounded-lg transition-colors ${
                 isActive
-                  ? 'bg-primary/10 border border-primary/50'
-                  : 'bg-muted/20 border border-transparent hover:bg-muted/40 hover:border-primary/20'
+                  ? 'bg-muted'
+                  : 'hover:bg-muted/50'
               }`}
             >
               <div className="flex items-start gap-2">
                 <MessageSquare
-                  className={`flex-shrink-0 h-4 w-4 mt-0.5 ${
-                    isActive ? 'text-primary' : 'text-muted-foreground'
+                  className={`flex-shrink-0 h-3.5 w-3.5 mt-0.5 ${
+                    isActive ? 'text-foreground' : 'text-muted-foreground'
                   }`}
                 />
                 <div className="flex-1 min-w-0">
                   <div className="font-medium text-sm text-foreground truncate">{conv.title}</div>
-                  <div className="flex items-center gap-1.5 mt-1">
+                  <div className="flex items-center gap-1.5 mt-0.5">
                     {persona && <span className="text-xs">{persona.icon}</span>}
                     <span className="text-xs text-muted-foreground">
                       {new Date(conv.timestamp).toLocaleDateString()}

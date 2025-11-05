@@ -21,18 +21,18 @@ export function CodeBlock({ code, language }: CodeBlockProps) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }}
+      initial={{ opacity: 0, y: 5 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-      className="relative my-4 rounded-lg border border-primary/20 bg-muted/30 backdrop-blur-sm overflow-hidden"
+      transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+      className="relative my-3 rounded-lg border border-border bg-muted/30 overflow-hidden"
     >
-      <div className="flex items-center justify-between px-4 py-2 border-b border-primary/10 bg-background/50">
-        <span className="text-xs font-mono text-muted-foreground uppercase">{language}</span>
+      <div className="flex items-center justify-between px-3 py-2 border-b border-border bg-muted/50">
+        <span className="text-xs font-mono text-muted-foreground">{language}</span>
         <Button
           variant="ghost"
           size="sm"
           onClick={handleCopy}
-          className="h-7 text-xs hover:bg-primary/10"
+          className="h-6 text-xs hover:bg-background"
         >
           {copied ? (
             <>
@@ -53,9 +53,9 @@ export function CodeBlock({ code, language }: CodeBlockProps) {
           style={vscDarkPlus}
           customStyle={{
             margin: 0,
-            padding: '1rem',
-            background: 'transparent',
-            fontSize: '0.875rem',
+            padding: '0.875rem',
+            background: 'hsl(0 0% 96%)',
+            fontSize: '0.8125rem',
           }}
           showLineNumbers
         >

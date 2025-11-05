@@ -7,10 +7,10 @@ export function PersonaSelector() {
 
   return (
     <div className="space-y-2">
-      <h3 className="px-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-        Agent Personas
+      <h3 className="px-2 text-xs font-medium text-muted-foreground tracking-wide">
+        Agents
       </h3>
-      <div className="space-y-1">
+      <div className="space-y-0.5">
         {agentPersonas.map((persona) => {
           const isSelected = selectedPersona.id === persona.id;
 
@@ -18,20 +18,16 @@ export function PersonaSelector() {
             <motion.button
               key={persona.id}
               onClick={() => setSelectedPersona(persona)}
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ backgroundColor: 'hsl(0 0% 96%)' }}
               whileTap={{ scale: 0.98 }}
-              className={`w-full text-left p-3 rounded-lg transition-all ${
+              className={`w-full text-left px-3 py-2.5 rounded-lg transition-colors ${
                 isSelected
-                  ? 'bg-primary/10 border border-primary/50 shadow-lg shadow-primary/20'
-                  : 'bg-muted/30 border border-transparent hover:bg-muted/50 hover:border-primary/20'
+                  ? 'bg-muted'
+                  : 'hover:bg-muted/50'
               }`}
             >
               <div className="flex items-start gap-3">
-                <div
-                  className={`flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br ${persona.gradient} flex items-center justify-center text-sm shadow-lg ${
-                    isSelected ? 'ring-2 ring-primary ring-offset-2 ring-offset-background' : ''
-                  }`}
-                >
+                <div className="flex-shrink-0 w-6 h-6 rounded-md bg-foreground/5 flex items-center justify-center text-xs">
                   {persona.icon}
                 </div>
                 <div className="flex-1 min-w-0">

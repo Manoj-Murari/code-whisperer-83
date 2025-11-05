@@ -12,17 +12,17 @@ export function LeftSidebar() {
     <motion.div
       initial={{ x: -300, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
-      transition={{ duration: 0.3 }}
-      className="w-80 border-r border-border/50 bg-background/95 backdrop-blur-lg flex flex-col"
+      transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+      className="w-72 border-r border-border bg-background flex flex-col"
     >
       {/* Logo & Branding */}
-      <div className="p-6 border-b border-border/50">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg shadow-primary/30">
-            <Sparkles className="h-5 w-5 text-background" />
+      <div className="px-5 py-6 border-b border-border">
+        <div className="flex items-center gap-3 mb-5">
+          <div className="w-8 h-8 rounded-lg bg-foreground flex items-center justify-center">
+            <Sparkles className="h-4 w-4 text-background" />
           </div>
           <div>
-            <h1 className="text-lg font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <h1 className="text-base font-semibold tracking-tight">
               Codex Veritas
             </h1>
             <p className="text-xs text-muted-foreground">AI Software Engineer</p>
@@ -31,7 +31,8 @@ export function LeftSidebar() {
 
         <Button
           onClick={createNewConversation}
-          className="w-full mt-4 bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity shadow-lg shadow-primary/20"
+          className="w-full bg-foreground text-background hover:bg-foreground/90 transition-colors"
+          size="sm"
         >
           <Plus className="mr-2 h-4 w-4" />
           New Chat
@@ -39,16 +40,20 @@ export function LeftSidebar() {
       </div>
 
       {/* Scrollable Content */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-6">
+      <div className="flex-1 overflow-y-auto px-3 py-4 space-y-6">
         <PersonaSelector />
-        <div className="border-t border-border/50 pt-6">
+        <div className="border-t border-border pt-4">
           <ChatHistory />
         </div>
       </div>
 
       {/* Settings Footer */}
-      <div className="p-4 border-t border-border/50">
-        <Button variant="ghost" className="w-full justify-start text-muted-foreground hover:text-foreground">
+      <div className="px-3 py-4 border-t border-border">
+        <Button 
+          variant="ghost" 
+          className="w-full justify-start text-muted-foreground hover:text-foreground hover:bg-muted"
+          size="sm"
+        >
           <svg
             className="mr-2 h-4 w-4"
             fill="none"

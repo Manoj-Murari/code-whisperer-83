@@ -31,24 +31,22 @@ const Index = () => {
       <div className="flex-1 flex flex-col min-w-0">
         {/* Header */}
         <motion.div
-          initial={{ y: -50, opacity: 0 }}
+          initial={{ y: -10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.3 }}
-          className="border-b border-border/50 bg-background/95 backdrop-blur-lg p-4"
+          transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+          className="border-b border-border bg-background px-8 py-5"
         >
-          <div className="max-w-4xl mx-auto flex items-center justify-between">
+          <div className="max-w-3xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div
-                className={`w-8 h-8 rounded-full bg-gradient-to-br ${selectedPersona.gradient} flex items-center justify-center text-sm shadow-lg`}
-              >
+              <div className="w-8 h-8 rounded-lg bg-foreground flex items-center justify-center text-base">
                 {selectedPersona.icon}
               </div>
               <div>
-                <h2 className="text-sm font-semibold text-foreground">{selectedPersona.name}</h2>
-                <p className="text-xs text-muted-foreground">{selectedPersona.description}</p>
+                <h2 className="text-base font-semibold text-foreground tracking-tight">{selectedPersona.name}</h2>
+                <p className="text-sm text-muted-foreground">{selectedPersona.description}</p>
               </div>
             </div>
-            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
+            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground hover:bg-muted">
               Clear Chat
             </Button>
           </div>
@@ -57,12 +55,9 @@ const Index = () => {
         {/* Messages Container */}
         <div
           ref={scrollContainerRef}
-          className="flex-1 overflow-y-auto px-4 py-6"
-          style={{
-            background: 'radial-gradient(circle at 50% 0%, hsl(189 100% 50% / 0.05), transparent 70%)',
-          }}
+          className="flex-1 overflow-y-auto px-8 py-8"
         >
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-3xl mx-auto">
             <AnimatePresence mode="popLayout">
               {currentMessages.map((message, index) => (
                 <MessageBubble key={message.id} message={message} index={index} />
@@ -79,15 +74,16 @@ const Index = () => {
         <AnimatePresence>
           {currentMessages.length > 3 && (
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
               className="absolute bottom-24 right-8"
             >
               <Button
                 onClick={scrollToBottom}
                 size="icon"
-                className="rounded-full shadow-lg shadow-primary/30 bg-primary/20 backdrop-blur-md border border-primary/50 hover:bg-primary/30"
+                className="rounded-full shadow-sm bg-muted border border-border hover:bg-muted/80"
               >
                 <ArrowDown className="h-4 w-4" />
               </Button>

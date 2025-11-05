@@ -8,52 +8,41 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Codex Veritas Dark Theme - Cyberpunk Developer Aesthetic */
-    --background: 225 15% 6%;
-    --background-secondary: 225 15% 8%;
-    --foreground: 210 40% 98%;
+    /* Premium Minimal Design System - Grayscale, Typography-First */
+    --background: 0 0% 100%;
+    --background-secondary: 0 0% 98%;
+    --foreground: 0 0% 9%;
 
-    --card: 225 15% 8%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 9%;
 
-    --popover: 225 15% 10%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 9%;
 
-    /* Electric Cyan Primary */
-    --primary: 189 100% 50%;
-    --primary-foreground: 225 15% 6%;
-    --primary-glow: 189 100% 60%;
+    /* Subtle gray accent */
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
 
-    /* Vibrant Purple Secondary */
-    --secondary: 270 70% 65%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 9%;
 
-    --muted: 225 15% 15%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 270 70% 65%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 9%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
     --success: 152 69% 45%;
-    --success-foreground: 210 40% 98%;
+    --success-foreground: 0 0% 98%;
 
-    --border: 225 15% 20%;
-    --input: 225 15% 15%;
-    --ring: 189 100% 50%;
+    --border: 0 0% 90%;
+    --input: 0 0% 96%;
+    --ring: 0 0% 9%;
 
-    --radius: 0.75rem;
-
-    /* Glass morphism effects */
-    --glass-bg: 225 15% 10% / 0.7;
-    --glass-border: 189 100% 50% / 0.2;
-    
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(189 100% 50%), hsl(270 70% 65%));
-    --gradient-bg: linear-gradient(180deg, hsl(225 15% 6%), hsl(225 15% 8%));
-    --gradient-glow: radial-gradient(circle at 50% 0%, hsl(189 100% 50% / 0.15), transparent 70%);
+    --radius: 0.5rem;
   }
 }
 
@@ -63,13 +52,19 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
-    background: linear-gradient(180deg, hsl(225 15% 4%), hsl(225 15% 8%));
+    @apply bg-background text-foreground antialiased;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-feature-settings: 'cv11', 'ss01';
+    letter-spacing: -0.011em;
   }
 
   code, pre {
     font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    letter-spacing: -0.02em;
   }
 }
 

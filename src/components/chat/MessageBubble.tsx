@@ -16,36 +16,30 @@ export function MessageBubble({ message, index }: MessageBubbleProps) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, delay: index * 0.05 }}
-      className={`flex gap-4 mb-6 ${isUser ? 'justify-end' : 'justify-start'}`}
+      transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1], delay: index * 0.03 }}
+      className={`flex gap-4 mb-8 ${isUser ? 'justify-end' : 'justify-start'}`}
     >
       {!isUser && (
-        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-xl shadow-lg shadow-primary/20">
+        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-foreground flex items-center justify-center text-base">
           {selectedPersona.icon}
         </div>
       )}
 
-      <div
-        className={`max-w-[80%] ${
-          isUser
-            ? 'bg-gradient-to-br from-primary/20 to-secondary/20 backdrop-blur-md border border-primary/30 rounded-2xl rounded-tr-sm'
-            : 'bg-card/60 backdrop-blur-md border border-primary/20 rounded-2xl rounded-tl-sm'
-        } px-6 py-4 shadow-xl`}
-      >
+      <div className={`max-w-[70%] ${isUser ? 'text-right' : ''}`}>
         {!isUser && message.thinking && message.thinking.length > 0 && (
-          <div className="mb-3 text-xs text-muted-foreground space-y-1">
+          <div className="mb-2 text-xs text-muted-foreground space-y-0.5">
             {message.thinking.map((step, i) => (
               <div key={i} className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-primary animate-glow-pulse" />
+                <div className="w-1 h-1 rounded-full bg-muted-foreground/50" />
                 {step}
               </div>
             ))}
           </div>
         )}
 
-        <div className={`prose prose-invert prose-sm max-w-none ${isUser ? 'text-foreground' : ''}`}>
+        <div className={`prose prose-sm max-w-none ${isUser ? 'text-foreground' : ''}`}>
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
@@ -59,7 +53,7 @@ export function MessageBubble({ message, index }: MessageBubbleProps) {
                   <CodeBlock code={codeString} language={match[1]} />
                 ) : (
                   <code
-                    className="px-1.5 py-0.5 rounded bg-muted/50 text-primary font-mono text-xs"
+                    className="px-1.5 py-0.5 rounded bg-muted text-foreground font-mono text-xs"
                     {...rest}
                   >
                     {children}
@@ -68,8 +62,8 @@ export function MessageBubble({ message, index }: MessageBubbleProps) {
               },
               table({ children }) {
                 return (
-                  <div className="overflow-x-auto my-4">
-                    <table className="min-w-full border-collapse border border-border/50">
+                  <div className="overflow-x-auto my-3">
+                    <table className="min-w-full border-collapse border border-border">
                       {children}
                     </table>
                   </div>
@@ -77,14 +71,14 @@ export function MessageBubble({ message, index }: MessageBubbleProps) {
               },
               th({ children }) {
                 return (
-                  <th className="border border-border/50 px-4 py-2 bg-muted/30 text-left font-semibold">
+                  <th className="border border-border px-3 py-2 bg-muted text-left font-medium text-sm">
                     {children}
                   </th>
                 );
               },
               td({ children }) {
                 return (
-                  <td className="border border-border/50 px-4 py-2">
+                  <td className="border border-border px-3 py-2 text-sm">
                     {children}
                   </td>
                 );
@@ -95,7 +89,7 @@ export function MessageBubble({ message, index }: MessageBubbleProps) {
           </ReactMarkdown>
         </div>
 
-        <div className="mt-3 text-xs text-muted-foreground">
+        <div className="mt-2 text-xs text-muted-foreground">
           {new Date(message.timestamp).toLocaleTimeString([], {
             hour: '2-digit',
             minute: '2-digit',
@@ -104,7 +98,7 @@ export function MessageBubble({ message, index }: MessageBubbleProps) {
       </div>
 
       {isUser && (
-        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-secondary to-primary flex items-center justify-center text-sm font-semibold shadow-lg shadow-secondary/20">
+        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-foreground/5 flex items-center justify-center text-xs font-medium">
           U
         </div>
       )}
